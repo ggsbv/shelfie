@@ -3,16 +3,17 @@
  The Universal Permissive License (UPL), Version 1.0
  -->
  <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
  <style media="screen">
 
  </style>
  <link rel="" href="/css/master.css">
 <div class="oj-hybrid-padding">
-  <h2>The Book Shelf:</h2>
+  <h2 style="font-family: 'Poiret One', cursive; font-size: 3em">The Book Shelf:</h2>
   <div class="bookItem">
-    <span>
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for book.." title="Type in the book titte">
-    </span>
+    <span class="col-md-6 mb-3">
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Book title search" title="Type in the book titte" lass="form-control" id="validationCustom05" >
+    </span><br>
     <oj-list-view id="listview" aria-label="list with static data">
                 <ul data-bind="foreach: books" id="myUL">
                     <li id="amybartlet">
@@ -26,7 +27,7 @@
                             </div>
                             <div class="swapBtn">
                               <span data-bind="click: swap">
-                                <button type="button" name="button">Swap this book</button>
+                                <button type="button" name="button" class="btn btn-outline-success">Swap this book</button>
                               </span>
                             </div>
                         </div>
