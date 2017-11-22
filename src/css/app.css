@@ -17,3 +17,10 @@
 .donate-button {
     text-align: center !important;
 }
+
+#header {
+  background-color: orange;
+}
+#myInput{
+  margin-bottom: 1em;
+}
