@@ -26,11 +26,19 @@ app.get('/api', function(req, res) {
   res.send({ name: "Anton Potgieter" })
 })
 
+app.get('/api/books', function(req, res) {
+  models.Book.find({}).then(function(err, books) {
+    if (books) {
+      res.json(books);
+    }
+  })
+})
+
 app.post('/api/books', function(req, res) {
-  models.Shoe.findOne(req.body).then(function(err, matchingBook) {
+  models.Book.findOne(req.body).then(function(err, matchingBook) {
     if (! matchingBook) {
-      new models.Shoe(req.body).save().then(function(err, shoe) {
-        if (shoe) {
+      new models.Book(req.body).save().then(function(err, book) {
+        if (book) {
           res.send(req.body.title + " has been saved to the database.");
         }
       });
