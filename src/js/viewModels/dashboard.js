@@ -10,6 +10,8 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
 
     function DashboardViewModel() {
       var self = this;
+
+      self.query = ko.observable();
       self.books = ko.observableArray([]);
 
       // Below are a subset of the ViewModel methods invoked by the ojModule binding
@@ -24,6 +26,14 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
         self.books(books);
       }
       });
+
+      self.searchBooks = ko.computed(function() {
+        if (self.query()) {
+          return self.books().filter(book => book.title.toLowerCase().includes(self.query()));
+        }
+
+        return self.books();
+      })
 
 swap = function() {
   alert('This book has been added to your swap list. Thank you!')
