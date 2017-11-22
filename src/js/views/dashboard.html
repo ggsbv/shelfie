@@ -15,26 +15,26 @@
     <span class="col-md-6 mb-3">
       <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Book title search" title="Type in the book titte" lass="form-control" id="validationCustom05" >
     </span><br>
-    <oj-list-view id="listview" aria-label="list with static data">
-                <ul data-bind="foreach: books" id="myUL">
-                    <li id="amybartlet">
-                        <span class="avatar" style="background-image: url('images/dvt/1.png')"></span>
-                        <div class="container">
-                            <div>
-                              <a style="text-decoration: none; color: black"><span id="title" data-bind="text: title"></span></a>
-                            </div>
-                            <div>
-                              <a style="text-decoration: none; color: black"><span class="oj-text-xs oj-text-secondary-color" id="author" data-bind="text: author"></span> </a>
-                            </div>
-                            <div class="swapBtn">
-                              <span data-bind="click: swap">
-                                <button type="button" name="button" class="btn btn-outline-success">Swap this book</button>
-                              </span>
-                            </div>
-                        </div>
-                    </li>
-                  </ul>
-                  </oj-list-view>
+
+                  <div class="container">
+                    <table class="table table-hover" data-bind="visible: books().length > 0">
+                      <tbody data-bind="foreach: books">
+                        <tr class="book-search-result">
+                          <td>
+                            <img data-bind="attr: {src: $data['image']}" style="width: 75px; height: 100px;">
+                          </td>
+                  
+                          <td>
+                            <p data-bind="text: title" style="font-size: 1.1em"></p>
+                          </td>
+                  
+                          <td class="donate-button">
+                            <button class="btn btn-success">GET BOOK</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
 
 
 

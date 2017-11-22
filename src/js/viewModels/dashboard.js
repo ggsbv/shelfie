@@ -10,13 +10,20 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
 
     function DashboardViewModel() {
       var self = this;
+      self.books = ko.observableArray([]);
+
       // Below are a subset of the ViewModel methods invoked by the ojModule binding
       // Please reference the ojModule jsDoc for additional available methods.
-self.books = ko.observable([
-  {"title" : "Harry Potter and The Order Of the Phoenix", "author" : "JK Rowling"},
-  {"title" : "Da Vinci Code" , "author" : "Dan Brown"}
-]
-);
+
+      $.ajax({
+        type : "GET",
+        url : 'https://shelfie-api.herokuapp.com/api/books',
+        dataType : "json",
+      success : function (books) {
+        //data that is grabbed from the database
+        self.books(books);
+      }
+      });
 
 swap = function() {
   alert('This book has been added to your swap list. Thank you!')
