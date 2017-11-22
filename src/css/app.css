@@ -26,6 +26,7 @@
 }
 #myInput{
   margin-bottom: 1em;
+  padding: 0.25em 8em 0.25em 0.5em;
 
 }
 #title{
@@ -34,4 +35,19 @@
 }
 #author{
   font-style: italic;
+}
+
+.btn-info {
+    background-color: purple !important;
+    border-color: purple !important;
+}
+
+.search-bookshelf {
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.search-bookshelf h2 {
+    margin-bottom: 0.5em;
 }
