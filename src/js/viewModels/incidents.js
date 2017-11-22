@@ -7,7 +7,7 @@
  */
 define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojinputtext', 'ojs/ojlabel', 'promise', 'ojs/ojlistview'],
  function(oj, ko, $) {
-  
+
     function IncidentsViewModel() {
       var self = this;
       // Below are a subset of the ViewModel methods invoked by the ojModule binding
@@ -39,7 +39,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojinputtext',
 
             //if no image for the book exists, add a "file not found" image
             imageLinks ? holder['image'] = imageLinks.smallThumbnail : holder['image'] = "https://d30y9cdsu7xlg0.cloudfront.net/png/140281-200.png";
-            
+
             return holder;
           });
 
@@ -49,7 +49,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojinputtext',
       }
 
       self.addBookToDatabase = function(book) {
-        let url = "http://localhost:3006/api/books";//"http://shelfie-books.herokuapp.com/api/books/";
+        let url = "http://shelfie-api.herokuapp.com/api/books";//"http://shelfie-books.herokuapp.com/api/books/";
 
         $.ajax({
           url: url,
@@ -59,7 +59,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojinputtext',
           success: function(result) { alert(result) }
         })
       }
-      
+
       /**
        * Optional ViewModel method invoked when this ViewModel is about to be
        * used for the View transition.  The application can put data fetch logic
@@ -90,7 +90,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojinputtext',
 
 
       /**
-       * Optional ViewModel method invoked after the bindings are applied on this View. 
+       * Optional ViewModel method invoked after the bindings are applied on this View.
        * If the current View is retrieved from cache, the bindings will not be re-applied
        * and this callback will not be invoked.
        * @param {Object} info - An object with the following key-value pairs:
