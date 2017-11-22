@@ -28,6 +28,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojinputtext',
 
             //create mapped object
             let holder = {
+              bookId: bookObject.id,
               title: bookInfo.title,
               authors: bookInfo.authors,
               description: bookInfo.description,
@@ -47,6 +48,18 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojinputtext',
         })
       }
 
+      self.addBookToDatabase = function(book) {
+        let url = "http://localhost:3006/api/books";//"http://shelfie-books.herokuapp.com/api/books/";
+
+        $.ajax({
+          url: url,
+          data: JSON.stringify(book),
+          type: "POST",
+          contentType: "application/json",
+          success: function(result) { alert(result) }
+        })
+      }
+      
       /**
        * Optional ViewModel method invoked when this ViewModel is about to be
        * used for the View transition.  The application can put data fetch logic
