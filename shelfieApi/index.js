@@ -1,9 +1,8 @@
 const express = require('express');
-const Shoes = require('./models/models');
 const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const session = require('express-session');
-const models = require('./models/models');
+const models = require('models');
 const mongoose = require('mongoose');
 const app = express();
 
