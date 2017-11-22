@@ -3,17 +3,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // create shoes Schema;
-const ShoeSchema = new Schema({
-    brand: { type: String, required: true},
-    color: { type: String, required: true},
-    price: { type: Number, required: true},
-    size:  { type: Number, required: true},
-    in_stock: { type: Number, required: true}
-
+const BookSchema = new Schema({
+    bookId: { type: String, required: true },
+    title: { type: String, required: true },
+    description: { type: String },
+    image: { type: String, required: true }
   });
 
 
 
-const Shoes = mongoose.model('shoes', ShoeSchema);
+const Book = mongoose.model('Book', BookSchema);
 
-module.exports = Shoes;
+module.exports = Book;
