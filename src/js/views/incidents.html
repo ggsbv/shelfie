@@ -2,9 +2,36 @@
  Copyright (c) 2014, 2017, Oracle and/or its affiliates.
  The Universal Permissive License (UPL), Version 1.0
  -->
-<div class="oj-hybrid-padding">
-  <h1>Incidents Content Area</h1>
-  <div>
-      To change the content of this section, you will make edits to the incidents.html file located in the /js/views folder.
+ <div class="oj-hybrid-padding">
+   <div class="oj-flex search-book-section">
+      <oj-input-text id="search-book" value="{{value}}" placeholder="search for book title, author..."></oj-input-text>
+      <oj-button id="search-book-button" on-click="[[searchForMatchingBooks]]">SEARCH</oj-button>
   </div>
+</div>
+
+<!-- <oj-list-view id="listview" aria-label="list with static data" selection-mode="single"
+  data-bind="visible: matchingBooks().length > 0">
+  <ul data-bind="foreach: matchingBooks">
+    <li class="search-book-result">
+      <img data-bind="attr: {src: $data['image']}"></img>
+      <p data-bind="text: title"></p>
+    </li>
+  </ul>
+</oj-list-view> -->
+<div class="container">
+  <table class="table table-hover" data-bind="visible: matchingBooks().length > 0">
+    <tbody data-bind="foreach: matchingBooks">
+      <tr class="book-search-result">
+        <td>
+          <img data-bind="attr: {src: $data['image']}" style="width: 75px; height: 100px;">
+        </td>
+        <td>
+          <p data-bind="text: title" style="font-size: 1.1em"></p>
+        </td>
+        <td class="donate-button">
+          <button type="button" class="btn btn-success" on-click="[[addBookToDatabase]]">DONATE</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

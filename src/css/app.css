@@ -5,3 +5,15 @@
     Description:
         This is where any of your application specific styles should be included
 */
+
+.search-book-section {
+    justify-content: center;
+}
+
+.table td {
+    vertical-align: baseline !important;
+}
+
+.donate-button {
+    text-align: center !important;
+}

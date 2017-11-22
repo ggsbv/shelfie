@@ -5,13 +5,47 @@
 /*
  * Your incidents ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery'],
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojinputtext', 'ojs/ojlabel', 'promise', 'ojs/ojlistview'],
  function(oj, ko, $) {
   
     function IncidentsViewModel() {
       var self = this;
       // Below are a subset of the ViewModel methods invoked by the ojModule binding
       // Please reference the ojModule jsDoc for additional available methods.
+      self.value = ko.observable();
+      self.matchingBooks = ko.observableArray([]);
+
+      self.searchForMatchingBooks = function () {
+        let url = "https://www.googleapis.com/books/v1/volumes?q=" + self.value() + "search+terms";
+
+        $.ajax({
+          url: url,
+          type: "GET"
+        }).done(function(results) {
+          let mappedResults = results.items.map((bookObject) => {
+            //save reference to where info is stored
+            let bookInfo = bookObject.volumeInfo;
+
+            //create mapped object
+            let holder = {
+              title: bookInfo.title,
+              authors: bookInfo.authors,
+              description: bookInfo.description,
+            };
+
+            //save reference to the book thumbnail
+            let imageLinks = bookInfo.imageLinks;
+
+            //if no image for the book exists, add a "file not found" image
+            imageLinks ? holder['image'] = imageLinks.smallThumbnail : holder['image'] = "https://d30y9cdsu7xlg0.cloudfront.net/png/140281-200.png";
+            
+            return holder;
+          });
+
+          self.matchingBooks(mappedResults);
+          self.value("");
+        })
+      }
 
       /**
        * Optional ViewModel method invoked when this ViewModel is about to be
