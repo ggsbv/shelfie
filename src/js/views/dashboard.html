@@ -10,12 +10,14 @@
  </style>
  <link rel="" href="/css/master.css">
 <div class="oj-hybrid-padding">
-<strong>  <h2 style="font-family: 'Berkshire Swash', 'cursive', cursive; font-size: 3em; ">The Book Shelf:</h2></strong>
-  <div class="bookItem">
-    <span class="col-md-6 mb-3">
-      <input data-bind="value: query, valueUpdate: 'keyup'" onKtype="text" id="myInput">
-    </span><br>
-
+  <div class="search-bookshelf">
+    <strong>  <h2 style="font-family: 'Berkshire Swash', 'cursive', cursive; font-size: 3em; ">The Book Shelf:</h2></strong>
+      <!-- <div class="bookItem"> -->
+        <span class="col-md-6 mb-3">
+          <input data-bind="value: query, valueUpdate: 'keyup'" onKtype="text" id="myInput">
+        </span><br>
+  </div>
+  
                   <div class="container">
                     <table class="table table-hover" data-bind="visible: books().length > 0">
                       <tbody data-bind="foreach: searchBooks">
@@ -29,7 +31,7 @@
                           </td>
 
                           <td class="donate-button">
-                            <button class="btn btn-success">GET BOOK</button>
+                            <button class="btn btn-info">GET BOOK</button>
                           </td>
                         </tr>
                       </tbody>
