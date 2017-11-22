@@ -1,12 +1,14 @@
 // get all books to display on the home screen
 $.ajax({
   type : "GET",
-url : /*sill to be added*/
+url : 'https://shelfie-books.herokuapp.com/api/books'
 dataType : "json",
 success : function (books) {
   console.log(books);
   ko.observable({
     //data that is grabbed from the database
+
+
   });
 }
 });
