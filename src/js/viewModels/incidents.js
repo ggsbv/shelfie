@@ -26,8 +26,6 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojinputtext',
             //save reference to where info is stored
             let bookInfo = bookObject.volumeInfo;
 
-            console.log(bookObject);
-
             //create mapped object
             let holder = {
               bookId: bookObject.id,
@@ -51,7 +49,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojinputtext',
       }
 
       self.addBookToDatabase = function(book) {
-        let url = "http://our.mongo.db";
+        let url = "https://shelfie-books.herokuapp.com/api/books/";
 
         $.ajax({
           url: url,
