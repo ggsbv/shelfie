@@ -23,4 +23,12 @@
 }
 #myInput{
   margin-bottom: 1em;
+
+}
+#title{
+    font-size: 15px;
+    font-weight: bold;
+}
+#author{
+  font-style: italic;
 }
