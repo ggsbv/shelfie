@@ -26,8 +26,11 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojinputtext',
             //save reference to where info is stored
             let bookInfo = bookObject.volumeInfo;
 
+            console.log(bookObject);
+
             //create mapped object
             let holder = {
+              bookId: bookObject.id,
               title: bookInfo.title,
               authors: bookInfo.authors,
               description: bookInfo.description,
@@ -47,6 +50,18 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojinputtext',
         })
       }
 
+      self.addBookToDatabase = function(book) {
+        let url = "http://our.mongo.db";
+
+        $.ajax({
+          url: url,
+          data: JSON.stringify(book),
+          type: "POST",
+          contentType: "application/json",
+          success: function(result) { alert(result) }
+        })
+      }
+      
       /**
        * Optional ViewModel method invoked when this ViewModel is about to be
        * used for the View transition.  The application can put data fetch logic
