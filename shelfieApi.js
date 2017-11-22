@@ -9,10 +9,10 @@ const app = express();
 
 var router = express.Router();
 
-mongoose.connect(process.env.MONGO_DB_URL ||'mongodb://localhost/shoes');
+mongoose.connect(process.env.MONGO_DB_URL ||'mongodb://localhost/shelfie');
 mongoose.Promise = global.Promise;
 
-app.use(express.static('public'));
+app.use(express.static('views'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
