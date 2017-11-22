@@ -49,7 +49,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojinputtext',
       }
 
       self.addBookToDatabase = function(book) {
-        let url = "https://shelfie-books.herokuapp.com/api/books/";
+        let url = "http://localhost:3006/api/books";//"http://shelfie-books.herokuapp.com/api/books/";
 
         $.ajax({
           url: url,

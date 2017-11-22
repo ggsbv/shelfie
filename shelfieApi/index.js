@@ -1,66 +1,32 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const flash = require('express-flash');
-const session = require('express-session');
-const models = require('models');
-const mongoose = require('mongoose');
-const app = express();
+"use strict";
 
-var router = express.Router();
+var express = require("express");
+var app = express();
 
-mongoose.connect(process.env.MONGO_DB_URL ||'mongodb://localhost/shelfie');
-mongoose.Promise = global.Promise;
+const jsonParser = require("body-parser").json;
+app.use(jsonParser());
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', '"Origin, X-Requested-With, Content-Type, Accept"');
-  next();
-});
+const Models = require("./models");
+const Routes = require("./routes");
+const errorHandler = require("./error-handler");
+const cors = require('./cors');
 
-app.use(express.static('views'));
+const mongoUrl = process.env.MONGO_DB_URL || "mongodb://localhost/shelfie";
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+const models =  Models(mongoUrl);
+const routes = Routes(models);
 
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 * 30 }}));
-app.use(flash());
+//CORS, Access Control
+app.use(cors);
 
-app.get('/', function(req, res) { res.redirect('/api') })
+app.get("/api/books", routes.allBooks);
 
-app.get('/api', function(req, res) {
-  res.send({ name: "Anton Potgieter" })
-})
+app.post("/api/books", routes.addBook);
 
-app.get('/api/books', function(req, res) {
-  models.Book.find({}).then(function(err, books) {
-    if (books) {
-      res.json(books);
-    }
-  })
-})
+errorHandler(app);
 
-app.post('/api/books', function(req, res) {
-  models.Book.findOne(req.body).then(function(err, matchingBook) {
-    if (! matchingBook) {
-      new models.Book(req.body).save().then(function(err, book) {
-        if (book) {
-          res.send(req.body.title + " has been saved to the database.");
-        }
-      });
-    } else {
-      matchingBook.inStock++;
-      matchingBook.save(function(err, updatedBook){
-        if (updatedBook) {
-          res.send(updatedBook.title + " has been updated");
-        }
-      })
-    }
-  })
-})
-
-const port = process.env.PORT || 3000;
+var port = process.env.PORT || 3006;
 
 app.listen(port, function() {
-    console.log('Web app started on port : ' + port );
+  console.log("application is running on port ", port);
 });

@@ -1,17 +1,33 @@
-const mongoose = require('mongoose');
+"use strict";
 
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose");
 
-// create shoes Schema;
-const BookSchema = new Schema({
-    bookId: { type: String, required: true },
-    title: { type: String, required: true },
-    description: { type: String },
-    image: { type: String, required: true }
+module.exports = function(mongoUrl){
+  mongoose.connect(mongoUrl);
+
+  var db = mongoose.connection;
+
+  db.on("error", function(err){
+    console.error(err);
   });
 
+  db.once("open", function(){
+    console.log("connection successful");
+  });
 
+  const Schema = mongoose.Schema;
 
-const Book = mongoose.model('Book', BookSchema);
+  const BookSchema = new Schema({
+    bookId: String,
+    title: String,
+    description: String,
+    image: String,
+    inStock: Number
+  });
 
-module.exports = Book;
+  const Book = mongoose.model("Book", BookSchema);
+
+  return {
+    Book
+  };
+};
