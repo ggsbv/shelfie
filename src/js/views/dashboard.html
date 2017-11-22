@@ -13,12 +13,12 @@
 <strong>  <h2 style="font-family: 'Berkshire Swash', 'cursive', cursive; font-size: 3em; ">The Book Shelf:</h2></strong>
   <div class="bookItem">
     <span class="col-md-6 mb-3">
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Book title search" title="Type in the book titte" lass="form-control" id="validationCustom05" >
+      <input data-bind="value: query, valueUpdate: 'keyup'" onKtype="text" id="myInput">
     </span><br>
 
                   <div class="container">
                     <table class="table table-hover" data-bind="visible: books().length > 0">
-                      <tbody data-bind="foreach: books">
+                      <tbody data-bind="foreach: searchBooks">
                         <tr class="book-search-result">
                           <td>
                             <img data-bind="attr: {src: $data['image']}" style="width: 75px; height: 100px;">
